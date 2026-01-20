@@ -1,40 +1,20 @@
 import java.util.Scanner;
-
-/**
- * Tic Tac Toe Game
- * ----------------
- * A simple command-line based two-player Tic Tac Toe game.
- * The game asks for both player names.
- *
- * Player 1 = X
- * Player 2 = O
- *
- * Players enter row and column numbers (0 to 2).
- */
 public class TicTacToe {
-
-    // 3x3 game board
-    static char[][] board = new char[3][3];
-
-    // Current player symbol
-    static char currentPlayer = 'X';
-
+    static char[][] board = new char[3][3];    // 3x3 game board
+    static char currentPlayer = 'X';    // Current player symbol
+    
     // Player names
     static String player1;
     static String player2;
-
     static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-
         System.out.println("=================================");
         System.out.println("      WELCOME TO TIC TAC TOE      ");
         System.out.println("=================================");
-
+        
         // Take player names
         System.out.print("Enter name of Player 1 (X): ");
         player1 = sc.nextLine();
-
         System.out.print("Enter name of Player 2 (O): ");
         player2 = sc.nextLine();
 
@@ -45,7 +25,6 @@ public class TicTacToe {
         System.out.println("4. Row and Column values must be between 0 and 2.");
         System.out.println("   Example: 1 2 means row 1, column 2");
         System.out.println("=================================\n");
-
         boolean playAgain;
 
         do {
@@ -55,14 +34,11 @@ public class TicTacToe {
             System.out.print("Do you want to play again? (yes/no): ");
             String choice = sc.next();
             playAgain = choice.equalsIgnoreCase("yes");
-
-            sc.nextLine(); // clear buffer
-
+            sc.nextLine(); 
         } while (playAgain);
 
         System.out.println("Thanks for playing Tic Tac Toe!");
     }
-
     /**
      * Initialize the board with empty spaces
      */
@@ -72,7 +48,7 @@ public class TicTacToe {
                 board[i][j] = ' ';
             }
         }
-        currentPlayer = 'X'; // X always starts
+        currentPlayer = 'X';
     }
 
     /**
@@ -81,15 +57,11 @@ public class TicTacToe {
     static void playGame() {
         boolean gameEnded = false;
         int moves = 0;
-
         while (!gameEnded) {
             printBoard();
-
             String currentPlayerName = (currentPlayer == 'X') ? player1 : player2;
             System.out.println(currentPlayerName + "'s turn (" + currentPlayer + ")");
-
             int row, col;
-
             // Take valid input
             while (true) {
                 System.out.print("Enter row and column (0-2): ");
@@ -102,7 +74,6 @@ public class TicTacToe {
                     System.out.println("Invalid move! Try again.");
                 }
             }
-
             // Place the move
             board[row][col] = currentPlayer;
             moves++;
@@ -125,7 +96,6 @@ public class TicTacToe {
             }
         }
     }
-
     /**
      * Print the game board
      */
@@ -140,7 +110,6 @@ public class TicTacToe {
             System.out.println("\n-------------");
         }
     }
-
     /**
      * Check if the move is valid
      */
@@ -153,7 +122,6 @@ public class TicTacToe {
         }
         return true;
     }
-
     /**
      * Check if current player has won
      */
@@ -166,7 +134,6 @@ public class TicTacToe {
                 return true;
             }
         }
-
         // Check columns
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == currentPlayer &&
@@ -175,14 +142,12 @@ public class TicTacToe {
                 return true;
             }
         }
-
         // Check diagonals
         if (board[0][0] == currentPlayer &&
             board[1][1] == currentPlayer &&
             board[2][2] == currentPlayer) {
             return true;
         }
-
         if (board[0][2] == currentPlayer &&
             board[1][1] == currentPlayer &&
             board[2][0] == currentPlayer) {
